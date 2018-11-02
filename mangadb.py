@@ -4,6 +4,7 @@ import re
 from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup
+from mangadb.render import Render
 
 
 class Book():
@@ -27,6 +28,12 @@ class Book():
     def init(self, meta):
         for k in self.keys:
             setattr(self, k, meta.get(k, None))
+
+    def render(self, template_path=None, image=False):
+        r = Render(tempate_path)
+        if pdf:
+            r.image(self)
+        r.html(self)
 
     def __repr__(self):
         return "<Book(title:{})>".format(self.title)
