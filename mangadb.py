@@ -11,7 +11,7 @@ class Book():
     keys = [
         'title',
         'original-title',
-        'author',
+        'authors',
         'episodes',
         'status',
         'category',
@@ -98,9 +98,9 @@ class ManhuaDB():
         div_detail_content = html.select_one('div.comic_detail_content > div')
         meta['description'] = div_detail_content.decode_contents().strip()
 
-        a_author = html.select_one('a.comic-creator')
-        author = a_author.text.strip()
-        meta['author'] = author
+        a_authors = html.select('a.comic-creator')
+        authors = [ a.text.strip() for a in a_authors ]
+        meta['authors'] = author
 
         return Book(meta)
 
